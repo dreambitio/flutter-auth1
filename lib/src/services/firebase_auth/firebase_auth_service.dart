@@ -301,11 +301,11 @@ class FirebaseAuthService implements IFirebaseAuthService {
       final facebook.FacebookAuth fAuth = facebook.FacebookAuth.instance;
       await _facebookWebInit(appId);
       final facebook.LoginResult user = await fAuth.login();
-      if (user.accessToken?.token == null) {
+      if (user.accessToken?.tokenString == null) {
         return const Left(null);
       }
       final OAuthCredential credential = FacebookAuthProvider.credential(
-        user.accessToken!.token,
+        user.accessToken!.tokenString,
       );
       final UserCredential res;
       if (action == AuthenticateActions.reAuthenticate) {
@@ -342,6 +342,8 @@ class FirebaseAuthService implements IFirebaseAuthService {
   }) async {
     try {
       final AppleAuthProvider provider = AppleAuthProvider();
+      provider.addScope('email');
+      provider.addScope('fullName');
       if (kIsWeb) {
         final UserCredential res = await auth.signInWithPopup(
           provider,

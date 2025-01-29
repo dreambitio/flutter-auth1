@@ -348,10 +348,10 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                                         .dialogTheme
                                         .backgroundColor ??
                                     Colors.white)
-                                .withOpacity(cupertinoStyle ? .84 : 1),
+                                .withOpacityValue(cupertinoStyle ? .84 : 1),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(.008),
+                                color: Colors.black.withOpacityValue(.008),
                                 spreadRadius: 1,
                                 blurRadius: 2,
                                 offset: const Offset(0, 0),

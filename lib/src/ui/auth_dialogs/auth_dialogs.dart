@@ -30,20 +30,26 @@ class AuthDialogs {
     /// use only material style [Widget]
     final bool useMaterialStyle = false,
   }) async {
+    final body = DefaultActionDialog(
+      title: title,
+      subtitle: subtitle,
+      firstTitle: firstTitle,
+      secondTitle: secondTitle,
+      firstDestructive: firstDestructive,
+      secondDestructive: secondDestructive,
+      okType: okType,
+      useMaterialStyle: useMaterialStyle,
+    );
+    if (useMaterialStyle) {
+      return await showDialog<bool?>(
+            context: context,
+            builder: (BuildContext context) => body,
+          ) ??
+          false;
+    }
     return await showAdaptiveDialog<bool?>(
           context: context,
-          builder: (BuildContext context) {
-            return DefaultActionDialog(
-              title: title,
-              subtitle: subtitle,
-              firstTitle: firstTitle,
-              secondTitle: secondTitle,
-              firstDestructive: firstDestructive,
-              secondDestructive: secondDestructive,
-              okType: okType,
-              useMaterialStyle: useMaterialStyle,
-            );
-          },
+          builder: (BuildContext context) => body,
         ) ??
         false;
   }
@@ -64,16 +70,22 @@ class AuthDialogs {
     /// use only material style [Widget]
     final bool useMaterialStyle = false,
   }) async {
+    final body = ReAuthPasswordDialog(
+      passwordValidator: passwordValidator,
+      inputFormatters: inputFormatters,
+      materialFieldStyle: materialFieldStyle,
+      useMaterialStyle: useMaterialStyle,
+    );
+    if (useMaterialStyle) {
+      return await showDialog<bool?>(
+            context: context,
+            builder: (BuildContext context) => body,
+          ) ??
+          false;
+    }
     return await showAdaptiveDialog<bool?>(
           context: context,
-          builder: (BuildContext context) {
-            return ReAuthPasswordDialog(
-              passwordValidator: passwordValidator,
-              inputFormatters: inputFormatters,
-              materialFieldStyle: materialFieldStyle,
-              useMaterialStyle: useMaterialStyle,
-            );
-          },
+          builder: (BuildContext context) => body,
         ) ??
         false;
   }
@@ -94,16 +106,22 @@ class AuthDialogs {
     /// use only material style [Widget]
     final bool useMaterialStyle = false,
   }) async {
+    final body = ReAuthPhoneCodeDialog(
+      codeValidator: codeValidator,
+      inputFormatters: inputFormatters,
+      materialFieldStyle: materialFieldStyle,
+      useMaterialStyle: useMaterialStyle,
+    );
+    if (useMaterialStyle) {
+      return await showDialog<bool?>(
+            context: context,
+            builder: (BuildContext context) => body,
+          ) ??
+          false;
+    }
     return await showAdaptiveDialog<bool?>(
           context: context,
-          builder: (BuildContext context) {
-            return ReAuthPhoneCodeDialog(
-              codeValidator: codeValidator,
-              inputFormatters: inputFormatters,
-              materialFieldStyle: materialFieldStyle,
-              useMaterialStyle: useMaterialStyle,
-            );
-          },
+          builder: (BuildContext context) => body,
         ) ??
         false;
   }
@@ -139,19 +157,24 @@ class AuthDialogs {
     /// use only material style [Widget]
     final bool useMaterialStyle = false,
   }) async {
+    final body = ChangePasswordDialog(
+      listener: listener,
+      passwordValidator: passwordValidator,
+      newPasswordValidator: newPasswordValidator,
+      confirmNewPasswordValidator: confirmNewPasswordValidator,
+      inputFormatters: inputFormatters,
+      materialFieldStyle: materialFieldStyle,
+      useMaterialStyle: useMaterialStyle,
+    );
+    if (useMaterialStyle) {
+      return showAdaptiveDialog(
+        context: context,
+        builder: (BuildContext context) => body,
+      );
+    }
     return showAdaptiveDialog(
       context: context,
-      builder: (BuildContext context) {
-        return ChangePasswordDialog(
-          listener: listener,
-          passwordValidator: passwordValidator,
-          newPasswordValidator: newPasswordValidator,
-          confirmNewPasswordValidator: confirmNewPasswordValidator,
-          inputFormatters: inputFormatters,
-          materialFieldStyle: materialFieldStyle,
-          useMaterialStyle: useMaterialStyle,
-        );
-      },
+      builder: (BuildContext context) => body,
     );
   }
 
@@ -435,10 +458,10 @@ class _MaterialActionDialog extends StatelessWidget {
   }) {
     return isDestructive
         ? Theme.of(context).textButtonTheme.style?.copyWith(
-              overlayColor: MaterialStateProperty.all<Color>(
-                Colors.red.withOpacity(.08),
+              overlayColor: WidgetStateProperty.all<Color>(
+                Colors.red.withOpacityValue(.08),
               ),
-              foregroundColor: MaterialStateProperty.all<Color>(
+              foregroundColor: WidgetStateProperty.all<Color>(
                 Colors.red,
               ),
             )

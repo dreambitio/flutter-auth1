@@ -25,9 +25,11 @@ class AuthStyles {
   /// cupertino field style
   static BoxDecoration cupertinoFieldStyle(final BuildContext context) {
     return BoxDecoration(
-      color: Theme.of(context).inputDecorationTheme.fillColor?.withOpacity(.5),
+      color: Theme.of(context).inputDecorationTheme.fillColor?.withOpacityValue(
+            .5,
+          ),
       border: Border.all(
-        color: CupertinoColors.inactiveGray.withOpacity(.5),
+        color: CupertinoColors.inactiveGray.withOpacityValue(.5),
       ),
       borderRadius: BorderRadius.circular(8),
     );

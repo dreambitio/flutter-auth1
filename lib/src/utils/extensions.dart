@@ -64,3 +64,18 @@ extension ServiceStringNullableExtension on String? {
     return prefix + this!.replaceAll(' ', '');
   }
 }
+
+/// [Color]? extension
+extension ColorNullableExtension on Color? {
+  /// Returns a new color that matches this color with the alpha channel
+  /// replaced with the given `opacity` (which ranges from 0 to 1).
+  Color withOpacityValue(double opacity) {
+    if (this == null) {
+      return Colors.transparent;
+    }
+    if (opacity < 0 || opacity > 1) {
+      return this!;
+    }
+    return this!.withAlpha((255 * opacity).round());
+  }
+}

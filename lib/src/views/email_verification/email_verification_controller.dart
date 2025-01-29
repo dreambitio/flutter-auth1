@@ -14,8 +14,9 @@ class EmailVerificationController extends ChangeNotifier
     getState();
   }
 
-  void getState(
-      [OneDayAuthState verificationState = const EmailVerification()]) {
+  void getState([
+    OneDayAuthState verificationState = const EmailVerification(),
+  ]) {
     final User? user = FirebaseAuthService.instance.currentUser;
     if ((user?.emailVerified ?? false)) {
       state = const EmailVerified();
