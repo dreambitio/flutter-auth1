@@ -108,7 +108,9 @@ class AuthMainButton extends StatelessWidget {
       hoverElevation: 0,
       disabledElevation: 0,
       highlightElevation: 0,
-      disabledColor: (color ?? Theme.of(context).primaryColor).withOpacity(.3),
+      disabledColor: (color ?? Theme.of(context).primaryColor).withOpacityValue(
+        .3,
+      ),
       shape: RoundedRectangleBorder(
         side: border
             ? BorderSide(
@@ -148,7 +150,9 @@ class AuthMainButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       minSize: 14,
       color: color ?? Theme.of(context).primaryColor,
-      disabledColor: (color ?? Theme.of(context).primaryColor).withOpacity(.3),
+      disabledColor: (color ?? Theme.of(context).primaryColor).withOpacityValue(
+        .3,
+      ),
       onPressed: loading ? null : onPressed,
       borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
       pressedOpacity: pressedOpacity,

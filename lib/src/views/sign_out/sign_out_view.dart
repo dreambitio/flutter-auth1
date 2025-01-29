@@ -111,11 +111,12 @@ class _SignOutViewState extends State<_SignOutView> {
         useMaterialStyle: widget.useMaterialStyleDefaultDialog,
       );
     }
-    if (res)
+    if (res) {
       await controller.signOut(
         preSignOutAction: widget.preSignOutAction,
         afterSignOutAction: widget.afterSignOutAction,
       );
+    }
   }
 
   @override
